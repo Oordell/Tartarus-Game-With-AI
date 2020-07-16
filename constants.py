@@ -11,8 +11,8 @@ DIR_DOWN = 6
 DIR_LEFT = 7
 
 MAP_SIZE = 6                    # 6 x 6 grid
-NUM_OF_BOXES = 6
-NUM_OF_FIELDS = MAP_SIZE + 2    # 8 x 8 grid incl. padding
+NUM_OF_BOXES = 6                # Boxes / boulders
+NUM_OF_FIELDS = MAP_SIZE + 2    # 8 x 8 grid (Map + padding)
 
 # Colors for GUI
 COLOR_BACKGROUND = (190, 190, 190)

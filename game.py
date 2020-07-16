@@ -111,6 +111,7 @@ class TartarusGame(object):
         return next_field_1, next_field_2
 
     def update_score(self):
+        #For AI use:
         #score_map = [[200, 150, 100, 100, 150, 200],
         #             [150,  10,   5,   5,  10, 150],
         #             [100,   5,   0,   0,   5, 100],
@@ -183,6 +184,7 @@ class TartarusGame(object):
                 self.gui.draw_map(self.map)
                 self.gui.draw_moves(self.moves)
                 self.gui.draw_score(self.score)
+
 
 if __name__ == '__main__':
     import argparse

@@ -15,7 +15,6 @@ class GameGUI(object):
         py.init()
         py.display.set_caption("Tartarus")
 
-        # Display window:
         self.screen = py.display
         self.screen_surface = self.screen.set_mode((self.screen_width, self.screen_height))
         self.clock = py.time.Clock()

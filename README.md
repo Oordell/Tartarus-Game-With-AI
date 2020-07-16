@@ -2,8 +2,7 @@
 The game of Tartarus implimented using PyGame.
 This is ment as a platform for implimenting AI-algorithms to solve the game of Tartarus.
 
-![Game_example](/img/game_ex.jpg)
-Format: ![Alt Text](url)
+![Game_example](/img/game_ex.JPG)
 
 ## Game description
 

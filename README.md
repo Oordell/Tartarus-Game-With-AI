@@ -25,6 +25,6 @@ Ude the left, right and up arrow keys to move the robot, if using manual control
 
 ## The use of AI
 
-If using AI, use the function `update_sensor_readings(self)` in _map.py_ to update update what the robot sees from it sensors. Then the `self.sensor_readings` variable can be used to see read the sensors. 
-An action can be controled by another file, by using the `run_auto(self, random_movement=True, action=None)` function from the file _game.py_, where _random\_movement_ is set to _False_, and the movement is inputed as _action_.
-Once the max number of moves has been reached (80), the map must be reset (Use the constant _ACTION\_RESET_ from _constants.py_.
+* If using AI, use the function `update_sensor_readings(self)` in _map.py_ to update update what the robot sees from it sensors. Then the `self.sensor_readings` variable can be used to see read the sensors. 
+* An action can be controled by another file, by using the `run_auto(self, random_movement=True, action=None)` function from the file _game.py_, where _random\_movement_ is set to _False_, and the movement is inputed as _action_.
+* Once the max number of moves has been reached (80), the map must be reset (Use the constant _ACTION\_RESET_ from _constants.py_.

@@ -4,9 +4,11 @@ import pygame as py
 import random as rand
 from constants import *
 from map import TartarusMap
+import os.path
+
 
 class GameGUI(object):
-    def __init__(self, highlight_sensors=True, fps=30):
+    def __init__(self, highlight_sensors=True, fps=60):
         self.view_highlight_sensors = highlight_sensors
         self.screen_height = 400
         self.screen_width = self.screen_height + 200
@@ -23,9 +25,10 @@ class GameGUI(object):
         self.fields = []
         self.field_width = self.screen_height / NUM_OF_FIELDS
 
-        self.img_boulder = py.image.load('img/boulder.png')
+        self.filepath = os.path.dirname(__file__)
+        self.img_boulder = py.image.load(os.path.join(self.filepath, 'img/boulder.png'))
         self.img_boulder = py.transform.scale(self.img_boulder, (int(self.field_width), int(self.field_width)))
-        self.img_robot = py.image.load('img/robot.png')
+        self.img_robot = py.image.load(os.path.join(self.filepath, 'img/robot.png'))
         self.img_robot = py.transform.scale(self.img_robot, (int(self.field_width), int(self.field_width)))
 
     def draw_map(self, map):
@@ -138,6 +141,7 @@ class GameGUI(object):
 
     def run_auto(self, random_actions=True, action=None):
         while True:
+            self.update_display()
             if py.event.peek():
                 for event in py.event.get():
                     if event.type == py.QUIT:
@@ -150,11 +154,9 @@ class GameGUI(object):
                         if event.key == py.K_RETURN or event.key == py.K_KP_ENTER:
                             return ACTION_RESET
             else:
-                move = -1
+                move = action
                 if random_actions:
                     move = rand.randint(ACTION_TURN_LEFT, ACTION_MOVE_FORWARD)
-                else:
-                    move = action
 
                 if move == ACTION_TURN_LEFT:
                     return ACTION_TURN_LEFT
@@ -165,8 +167,6 @@ class GameGUI(object):
                 else:
                     print("ERROR: input action not formated correctly")
                     return
-                
-            self.update_display()
             
 
 if __name__ == '__main__':

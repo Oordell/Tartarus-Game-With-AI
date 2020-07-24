@@ -110,21 +110,20 @@ class TartarusGame(object):
         
         return next_field_1, next_field_2
 
-    def update_score(self):
-        #For AI use:
-        #score_map = [[200, 150, 100, 100, 150, 200],
-        #             [150,  10,   5,   5,  10, 150],
-        #             [100,   5,   0,   0,   5, 100],
-        #             [100,   5,   0,   0,   5, 100],
-        #             [150,  10,   5,   5,  10, 150],
-        #             [200, 150, 100, 100, 150, 200]]
-
+    def update_score(self, ai_score_map=False):
         score_map = [[2,    1,  1,  1,  1,  2],
                      [1,    0,  0,  0,  0,  1],
                      [1,    0,  0,  0,  0,  1],
                      [1,    0,  0,  0,  0,  1],
                      [1,    0,  0,  0,  0,  1],
                      [2,    1,  1,  1,  1,  2]]
+        if ai_score_map:
+            score_map = [[200, 150, 100, 100, 150, 200],
+                         [150, 10, 5, 5, 10, 150],
+                         [100, 5, 0, 0, 5, 100],
+                         [100, 5, 0, 0, 5, 100],
+                         [150, 10, 5, 5, 10, 150],
+                         [200, 150, 100, 100, 150, 200]]
 
         temp_score = 0
 
@@ -136,7 +135,7 @@ class TartarusGame(object):
         if self.score != temp_score:
             self.score = temp_score
 
-    def run(self, autorun=False):
+    def run(self, autorun=False, random_movement=True, action=None):
         while True:
             if self.new_game:
                 self.create_new_game()
@@ -144,7 +143,7 @@ class TartarusGame(object):
                 self.running = True
             
             if autorun:
-                self.run_auto()
+                self.run_auto(random_movement=random_movement, action=action)
             else:
                 self.run_manual()
 
@@ -156,15 +155,15 @@ class TartarusGame(object):
             move = self.gui.run()
             self.perform_action(action=move)
     
-    def run_auto(self, random_movement=True, action=None):
-        move = -1
+    def run_auto(self, random_movement=True, action=None, ai_score_map=False):
+        move = action
         if self.view_gui:
             move = self.gui.run_auto(random_actions=random_movement, action=action)
-        self.perform_action(action=move)
+        self.perform_action(action=move, ai_score_map=ai_score_map)
         if self.view_gui:
             self.gui.update_display()
 
-    def perform_action(self, action):
+    def perform_action(self, action, ai_score_map=False):
         if action == ACTION_RESET:
             self.new_game = True
             return
@@ -178,7 +177,7 @@ class TartarusGame(object):
                 self.action_turn_right()
 
             self.moves += 1
-            self.update_score() 
+            self.update_score(ai_score_map=ai_score_map)
 
             if self.view_gui:
                 self.gui.draw_map(self.map)
